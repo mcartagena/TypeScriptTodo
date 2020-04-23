@@ -46,3 +46,23 @@ function totalLengths(x: (string | any[]), y: (string | any[])): number{
 }
 
 console.log(totalLengths([1,"hola",2],"chao"));
+
+function totalCalculateLength(x: string, y: string): number
+function totalCalculateLength(x: any[], y: any[]): number
+function totalCalculateLength(x: (string | any[]), y: (string | any[])): number{
+    var total:number = x.length + y.length;
+    
+    x.slice(0);
+
+    if(x instanceof Array){
+        x.push('abc');
+    }
+    
+    if( x instanceof String ){
+        x.substring(1);
+    }
+    
+    return total;
+}
+
+console.log(totalCalculateLength([1,"hola",2],["chao"]));

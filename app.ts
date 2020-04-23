@@ -28,3 +28,21 @@ function totalLength(x: any[],y:string): number{
 }
 
 console.log(totalLength([1,"hola",2],"chao"));
+
+function totalLengths(x: (string | any[]), y: (string | any[])): number{
+    var total:number = x.length + y.length;
+    
+    x.slice(0);
+
+    if(x instanceof Array){
+        x.push('abc');
+    }
+    
+    if( x instanceof String ){
+        x.substring(1);
+    }
+    
+    return total;
+}
+
+console.log(totalLengths([1,"hola",2],"chao"));

@@ -1,28 +1,42 @@
-interface Todo{
+interface TodoCustomType{
     name: string;
     completed?: boolean;
-    state: TodoState
+    state: TodoStateCustomType
 }
 
-interface ITodoService{
-    add(todo: Todo): Todo;
-    delete(todoId: number): void;
-    getAll(): Todo[];
-    getById(todoId: number): number;
+interface ITodoCustomTypeService{
+    add(TodoCustomType: TodoCustomType): TodoCustomType;
+    delete(TodoCustomTypeId: number): void;
+    getAll(): TodoCustomType[];
+    getById(TodoCustomTypeId: number): number;
 }
 
 // Enums
 
-enum TodoState {
+enum TodoStateCustomType {
     New = 1,
     Active,
     Complete,
     Deleted
 }
 
-var todo2:  Todo = {
+var TodoCustomType2:  TodoCustomType = {
     name: "Pick up drycleaning",
-    state: TodoState.New
+    get state(){
+        return this._state;
+    },
+    set state(newState){
+
+        if(newState == TodoStateCustomType.Complete){
+            var canBeCompleted = TodoStateCustomType.Active || this.state ==  TodoStateCustomType.Deleted;
+
+            if(!canBeCompleted){
+                throw 'TodoCustomType must be Active or Deleted in order to be marked completed'
+            }
+        }
+
+        this._state = newState;
+    }
 }
 
-
+TodoCustomType2.state = TodoStateCustomType.Complete;
